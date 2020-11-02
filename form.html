@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .label {
+            float: left;
+            width: 150px;
+        }
+
+        .infobox {
+            width: 200px;
+        }
+
+        .error {
+            color: red;
+            padding-left: 10px;
+        }
+
+        .submit {
+            margin-left: 150px;
+            margin-top: 10px;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="header">
+        <p>Lacsita Devi Oktaviana | 05211940000028 </p>
+    </div>
+
+    <script>
+
+        $(document).ready(function () {
+            $('.error').hide(); //menyembunyikan label error
+            $('.submit').click(function (event) { // event ketika tombol submit di klik
+                var data = $('.infobox').val(); //membaca isi text box pada class infobox
+                if (validate_date(data)) { //menentukan kondisi data yang divalidasi benar atau salah 
+                    $('.error').hide(); //jika kondisi benar maka label error akan disembunyikan
+                }
+                else {
+                    $('.error').show(); //jika kondisi tidak memenuhi maka label error akan dimunculkan
+                    event.preventDefault(); //membatalkan event submit 
+                }
+            });
+        });
+        function validate_date(date) { //fungsi untuk memvalidasi  data (tanggal) yang diinput
+            var pattern = new RegExp(/\b\d{1,2}[\/]\d{1,2}[\/]\d{4}\b/); // persyaratan data (tanggal) dengan pola mm/dd/yyy
+            return pattern.test(date); //menguji kecocokan string dengan persyaratan, akan mengembalikan nilai true jika menemukan kecocokan dan fals jika tidak
+        }
+    </script>
+
+    <form id="signup" method="post" action="">
+        <div>
+            <span class="label">Tanggal pengembalian</span><input type="text" class="infobox" name="dob" /><span
+                class="error"> Data tidak valid! Masukan tanggal dengan format mm/dd/yyyy.
+            </span></div>
+        <input class="submit" type="submit" value="Submit">
+    </form>
+
+
+</body>
+
+</html>
